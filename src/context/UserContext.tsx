@@ -19,7 +19,7 @@ interface UserContextType {
 export const UserContext = createContext<UserContextType | undefined>(undefined);
 
 
-export function UserProvider() {
+export function UserProvider({ children } : { children: React.ReactNode}) {
 
     // Här har vi state för user. Den skickas med genom providern och 
     // kan på så sätt nå alla komponenter vars parent är "wrappat" runt den.
@@ -33,7 +33,7 @@ export function UserProvider() {
 
     return (
         <UserContext.Provider value={value}>
-
+            { children }
         </UserContext.Provider>
      )
 
