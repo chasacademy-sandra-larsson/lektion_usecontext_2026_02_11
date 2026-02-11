@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
-import { UserContext } from "../context/UserContext";
+import { useUser } from "../context/UserContext"
 import { useNavigate } from "react-router"
+import { useState } from "react";
 
 
 
@@ -10,12 +10,8 @@ export default function SignInPage() {
   // och använda det för att sätta user-objektet i UserContext
   // och navigera till dashboard-sidan
 
-  const context = useContext(UserContext);
-
-  if(!context) {
-    throw new Error("SignInPage must be in a UserContextProvider")
-  }
-
+  const context = useUser();
+  
   // Vårt state i context (user behövs inte så kan tas bort)
   const {user, setUser } = context;
 

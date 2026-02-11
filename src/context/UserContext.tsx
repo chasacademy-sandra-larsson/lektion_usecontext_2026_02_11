@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useContext } from 'react';
 
 
 // Typen för vår user
@@ -39,3 +39,20 @@ export function UserProvider({ children } : { children: React.ReactNode}) {
 
 }
 
+// Custom hook som förenklar hantering av att konsumera context i komponterna
+// slipp importera UserContext och non-nullish av context
+
+// En custom hook är egentligen bara en återanvänbar funktion, som inte returnerar jsx. 
+// Bara vanlig funktion som döps till use-Whatever
+
+export function useUser() {
+
+    const context = useContext(UserContext);
+
+   if(!context) {
+    throw new Error("useUser must be in a UserProvider")
+  }
+
+  return context;
+
+}
